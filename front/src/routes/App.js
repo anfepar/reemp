@@ -9,7 +9,8 @@ const App = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={LandingPage} />
-      <Route exact path="/register" component={Register} />
+      <Route path="/register" component={Register} />
+      <Route path="/empresa" component={FormCompany} />
       <Route component={NotFound} />
     </Switch>
   </BrowserRouter>
