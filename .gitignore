@@ -354,3 +354,7 @@ $RECYCLE.BIN/
 GlobHack/*
 
 .vscode/*
+
+nohup.out
+
+back/api/migrations/*
