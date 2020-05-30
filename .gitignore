@@ -358,3 +358,6 @@ GlobHack/*
 nohup.out
 
 back/api/migrations/*
+
+/.idea/*
+*/.idea/*
