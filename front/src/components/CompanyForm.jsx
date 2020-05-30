@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { FormControl, InputLabel, Input, Button } from "@material-ui/core";
 import { connect } from "react-redux";
+import { GET_METHOD } from "../constants/STRINGS";
+import { serviceMethod } from "../api/util";
 
 import { setDatosCompany } from "../actions";
 class CompanyForm extends Component {
@@ -10,7 +12,26 @@ class CompanyForm extends Component {
     representanteLegal: "",
     ciudad: "",
     departamento: "",
+    isLoading: true,
+    departamentos: [],
+    ciudades: [],
   };
+  componentDidMount() {
+    let callback = {
+      onSuccess: (response) => {
+        console.log(response);
+      },
+      onFailed: (error) => {
+        console.log(error);
+      },
+    };
+    serviceMethod(
+      GET_METHOD,
+      "http://dummy.restapiexample.com/api/v1/employees",
+      {},
+      callback
+    );
+  }
 
   onChangeHandler = (event) => {
     this.setState({ [event.target.name]: event.target.value });
@@ -18,16 +39,24 @@ class CompanyForm extends Component {
 
   onHandleSubmit = (e) => {
     e.preventDefault();
-    this.props.setDatosCompany(this.state);
+    this.props.setDatosCompany({
+      nombreEmpresa: this.state.nombreEmpresa,
+      NIT: this.state.NIT,
+      representanteLegal: this.state.representanteLegal,
+      ciudad: this.state.ciudad,
+      departamento: this.state.departamento,
+    });
   };
   render() {
-    return (
+    return this.state.isLoading ? (
+      <h1>Cargando...</h1>
+    ) : (
       <div>
         <div>
           <h1>2. Tu empresa</h1>
           <p>Registra los datos de tu emprendimiento</p>
 
-          <FormControl>
+          {/* <FormControl>
             <InputLabel htmlFor="nombreEmpresa">Nombre empresa</InputLabel>
             <Input
               name="nombreEmpresa"
@@ -66,7 +95,7 @@ class CompanyForm extends Component {
               onChange={this.onChangeHandler}
             />
             <Button onClick={this.onHandleSubmit}>Siguiente</Button>
-          </FormControl>
+          </FormControl> */}
         </div>
       </div>
     );
