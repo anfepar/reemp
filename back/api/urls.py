@@ -4,6 +4,8 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'companies', views.CompanyViewSet)
+router.register(r'sectors', views.SectorViewSet)
+router.register(r'categories', views.CategoryViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
