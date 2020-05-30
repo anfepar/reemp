@@ -1,5 +1,5 @@
-import { combineReducers } from "redux";
-import simpleReducer from "./simpleReducer";
-export default combineReducers({
-  simpleReducer,
-});
+const reducer = (state, action) => {
+  return state;
+};
+
+export default reducer;
