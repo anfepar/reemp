@@ -356,3 +356,5 @@ GlobHack/*
 .vscode/*
 
 nohup.out
+
+back/api/migrations/*
