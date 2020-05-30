@@ -7,8 +7,8 @@ export default class CompanyForm extends Component {
   render() {
     return (
       <div className="">
-      
       </div>
+      
     );
   }
 }

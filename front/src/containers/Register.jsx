@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
 import UserForm from '../components/UserForm';
 import CompanyForm from '../components/CompanyForm';
 import PreferencesForm from '../components/PreferencesForm';
@@ -16,12 +15,11 @@ export default class Register extends Component {
     return (
       <div className="">
         {this.state.step === 1 ? 
-          <UserForm/> : this.state.step === 2 ? 
-          <CompanyForm/> : this.state.step === 3 ? 
+          <CompanyForm/> : this.state.step === 2 ? 
           <PreferencesForm/> : <UserForm/>
         }
         <Button variant="contained" color="primary">
-          Continue
+          {this.state.step < 2 ? "Continue": "Enviar"}
         </Button>
       </div>
     );
