@@ -8,6 +8,8 @@ class Sector(models.Model):
 class Company(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
+    nit = models.CharField(max_length=50)
+    owner = models.CharField(max_length=100)
     suscription = models.BooleanField(default=False)
     sector = models.ForeignKey(Sector, on_delete=models.PROTECT)
 
