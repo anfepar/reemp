@@ -8,19 +8,19 @@ export default class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        step: 1,
-    }
+      step: 1,
+    };
   }
   render() {
     return (
       <div className="">
-        {this.state.step === 1 ? 
-          <CompanyForm/> : this.state.step === 2 ? 
-          <PreferencesForm/> : <UserForm/>
-        }
-        <Button variant="contained" color="primary">
-          {this.state.step < 2 ? "Continue": "Enviar"}
-        </Button>
+        {this.state.step === 1 ? (
+          <CompanyForm />
+        ) : this.state.step === 2 ? (
+          <PreferencesForm />
+        ) : (
+          <CompanyForm />
+        )}
       </div>
     );
   }
