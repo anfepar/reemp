@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+<<<<<<< HEAD
 import UserForm from '../components/UserForm';
 import CompanyForm from '../components/CompanyForm';
 import PreferencesForm from '../components/PreferencesForm';
