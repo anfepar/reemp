@@ -3,12 +3,18 @@ const reducer = (state, action) => {
     case "SET_DATOS_COMPANY":
       return {
         ...state, 
-        company: action.payload
+        company: {...state.company, ...action.payload}
       };
     case "GET_DATOS_COMPANY":
       return {};
     default:
       return state;
+
+    case "SET_LOCATION":
+      return {
+        ...state,
+        location: {...state.location, ...action.payload}
+      }
   }
 };
 

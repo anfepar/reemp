@@ -8,10 +8,14 @@ import reducer from "./reducers";
 const initialState = {
   company:{
     name:"",
-    NIT:"",
-    representanteLegal:"",
-    ciudad:"",
-    departamento:""
+    nit:"",
+    owner:"",
+    sector:"",
+    preferences:{},
+  },
+  location:{
+    city:"",
+    country:""
   }
 
 };
