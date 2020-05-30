@@ -1,9 +1,37 @@
 import React, { Component } from "react";
 import { FormControl, InputLabel, Input, Button, TextField } from "@material-ui/core";
 import { connect } from "react-redux";
+import { GET_METHOD } from "../constants/STRINGS";
+import { serviceMethod } from "../api/util";
 
 import { setDatosCompany } from "../actions";
 class CompanyForm extends Component {
+  state = {
+    nombreEmpresa: "",
+    NIT: "",
+    representanteLegal: "",
+    ciudad: "",
+    departamento: "",
+    isLoading: true,
+    departamentos: [],
+    ciudades: [],
+  };
+  componentDidMount() {
+    let callback = {
+      onSuccess: (response) => {
+        console.log(response);
+      },
+      onFailed: (error) => {
+        console.log(error);
+      },
+    };
+    serviceMethod(
+      GET_METHOD,
+      "http://dummy.restapiexample.com/api/v1/employees",
+      {},
+      callback
+    );
+  }
 
   onChangeHandler = (event) => {  
     console.log(event.target.name) 
@@ -13,7 +41,9 @@ class CompanyForm extends Component {
   };
 
   render() {
-    return (
+    return this.state.isLoading ? (
+      <h1>Cargando...</h1>
+    ) : (
       <div>
           <h1>1. Tu empresa</h1>
           <p>Registra los datos de tu emprendimiento</p>
