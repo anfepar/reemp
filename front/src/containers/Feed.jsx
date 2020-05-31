@@ -37,16 +37,25 @@ class Feed extends Component {
   componentDidMount() {
     let callback = {
       onSuccess: (response) => {
+        console.log(response.data);
         this.setState({ isLoading: false, allies: response.data }, () => {});
       },
       onFailed: (error) => {
         console.log(error);
       },
     };
-    serviceMethod(GET_METHOD, `${URLS.BASE}allies`, {}, callback);
+    console.log("GENERAL PROPS", this.props);
+    console.log("COMPANY PROPS", this.props.company.id);
+    serviceMethod(
+      GET_METHOD,
+      `${URLS.BASE}get_best_company_matches/${this.props.company.id}`,
+      {},
+      callback
+    );
   }
 
   handleGetDetails(allied) {
+    console.log("allied", allied);
     this.props.selectAlly(allied);
   }
 
@@ -83,7 +92,7 @@ class Feed extends Component {
                 </div>
               </CardContent>
               <CardActions className="detail">
-                <Link className="link" to={`/allies/${allied.id}`}>
+                <Link className="link" to={`/alliance/products`}>
                   <button
                     name={allied.id}
                     className="detail-button"
@@ -100,8 +109,16 @@ class Feed extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  console.log("state state to props", state);
+  return {
+    idCompany: state.idCompany,
+    company: state.company,
+  };
+};
+
 const mapDispatchToProps = {
   selectAlly,
 };
 
-export default connect(null, mapDispatchToProps)(Feed);
+export default connect(mapStateToProps, mapDispatchToProps)(Feed);

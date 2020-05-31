@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { serviceMethod } from "../api/util";
 import { GET_METHOD, URLS } from "../constants/STRINGS";
-import { Card, CardMedia, CardContent} from "@material-ui/core"
+import { Card, CardMedia, CardContent } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 class AllyDetail extends Component {
   state = { isLoading: true, ally: this.props.ally, products: [] };
@@ -31,19 +32,20 @@ class AllyDetail extends Component {
   render() {
     return (
       <>
+        <Link to="/alliance">ALLIANCE</Link>
         {this.state.products.map((product, index) => (
           <div>
-          <Card>
-            <CardMedia
-              image="/static/images/cards/live-from-space.jpg"
-              title={product.name}
-            />
-            <CardContent >
-              {product.name}
-              {product.description}
-            </CardContent>
-          </Card>
-          <button>Ofertar</button>
+            <Card>
+              <CardMedia
+                image="/static/images/cards/live-from-space.jpg"
+                title={product.name}
+              />
+              <CardContent>
+                {product.name}
+                {product.description}
+              </CardContent>
+            </Card>
+            <button>Ofertar</button>
           </div>
         ))}
       </>

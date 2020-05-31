@@ -10,11 +10,19 @@ import SendAlliance from "./SendAlliance";
 import DetailAlliance from "./DetailAlliance";
 import ApproveAlliance from "./ApproveAlliance";
 import Place from "@material-ui/icons/Place";
-
+import { serviceMethod } from "../api/util";
+import {
+  GET_METHOD,
+  POST_METHOD,
+  MOCKED_DATA,
+  URLS,
+} from "../constants/STRINGS";
+import { Link } from "react-router-dom";
 class NewAlliance extends Component {
   steps = ["products", "values", "comments", "send", "detail"];
   state = {
     step: 0,
+    alliance: {},
   };
 
   selectLabel() {
@@ -51,9 +59,51 @@ class NewAlliance extends Component {
     }
     this.setState({ step });
   }
+   
+  componentDidMount() {
+    console.log("selected ally", this.props);
+    let callback = {
+      onSuccess: (response) => {
+        console.log("response,", response);
+        console.log("response.data[0]", response.data[0]);
 
+        this.setState(
+          {
+            isLoading: false,
+            alliance: { city: response.data[0].city },
+          },
+          () => {
+            console.log(this.state);
+          }
+        );
+        //TODO REDIRECCCIONAR A PAGINA DE INICIO
+        // this.props.loginCompany(true);
+        // this.props.history.push("/allies");
+        // let location = response.data.find((value) => {
+        //   console.log("selected ally", this.props.selectedAlly);
+        //   return value.company === this.props.selectedAlly.id;
+        // });
+
+        // console.log("LOCATION ENCONTRADA", location);
+        // this.handlePostRequests(response.data.id);
+      },
+      onFailed: (error) => {
+        console.log(error);
+      },
+    };
+    // let company = this.props.company;
+    // console.log(company);
+    serviceMethod(
+      GET_METHOD,
+      `${URLS.BASE}company/locations/${this.props.selectedAlly.id}`,
+      {},
+      callback
+    );
+  }
   render() {
-    return (
+    return this.state.isLoading ? (
+      <h1>Loading...</h1>
+    ) : (
       <div className="feed">
         <div className="description">
           <h1 className="title">{this.props.title}</h1>
@@ -84,6 +134,7 @@ class NewAlliance extends Component {
 const mapStateToProps = (state) => {
   return {
     title: state.title,
+    selectedAlly: state.selectedAlly,
   };
 };
 

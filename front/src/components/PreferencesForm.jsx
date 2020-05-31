@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { serviceMethod } from "../api/util";
-import { loginCompany } from "../actions";
+import { loginCompany, setIdCompany, setDatosCompany } from "../actions";
 
 import {
   GET_METHOD,
@@ -137,13 +137,15 @@ class PreferencesForm extends Component {
   };
 
   handlePostRequests = (idCompany) => {
+    this.props.setIdCompany({ idCompany });
     Promise.all([
       ...this.addPreferences(idCompany),
       this.addLocationData(idCompany),
     ])
       .then((results) => {
         console.log(results);
-        this.props.history.push("/feed");
+
+        this.props.history.push("/allies");
       })
       .catch((error) => {
         console.log(error);
@@ -157,6 +159,10 @@ class PreferencesForm extends Component {
         console.log("response", response);
         //TODO REDIRECCCIONAR A PAGINA DE INICIO
         this.props.loginCompany(true);
+        this.props.setDatosCompany({
+          ...this.props.company,
+          id: response.data.id,
+        });
         this.props.history.push("/allies");
         this.handlePostRequests(response.data.id);
       },
@@ -234,6 +240,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   loginCompany,
+  setIdCompany,
+  setDatosCompany,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PreferencesForm);

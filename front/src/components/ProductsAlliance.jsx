@@ -5,6 +5,7 @@ import {TextField} from '@material-ui/core'
 import { Link } from "react-router-dom";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import NavigateScreenIcon from "./NavigateScreenIcon";
+import { connect } from "react-redux";
 
 class ProductsAlliance extends Component {
   state = {
@@ -19,6 +20,16 @@ class ProductsAlliance extends Component {
         name: "Product3",
       },
     ],
+    startDate: "",
+    endDate: "",
+  };
+
+  onchangeHandler = (e) => {
+    e.preventDefault();
+    this.setState({ [e.target.name]: e.target.value }, () => {
+      console.log(this.state);
+    });
+    console.log("PRESIONADO");
   };
   render() {
     return (
@@ -32,10 +43,10 @@ class ProductsAlliance extends Component {
               style={{backgroundColor:"white", borderRadius:"10px"}}
                 id="date"
                 type="date"
-                defaultValue="2017-05-24"                
-                InputLabelProps={{
-                  shrink: true,
-                }}
+                name="startDate"
+                defaultValue="2017-05-24"   
+                onChange={this.onchangeHandler}     
+                value={this.state.startDate}        
               />
             </div>
             </div>
@@ -44,16 +55,15 @@ class ProductsAlliance extends Component {
             <div>
               <TextField
                 style={{backgroundColor:"white",borderRadius:"10px"}}
-                id="date"
-                type="date"
-                defaultValue="2017-05-24"                
-                InputLabelProps={{
-                  shrink: true,
-                }}
+                id="endDate"
+              label="Fecha Finalización"
+              name="endDate"
+              type="date"
+              onChange={this.onchangeHandler}
+              value={this.state.endDate}
               />
             </div>
             </div>
-            
           </div>
           <div className="flex flex-row space-between">
             {this.state.products.map((product) => {
@@ -66,4 +76,10 @@ class ProductsAlliance extends Component {
   }
 }
 
-export default ProductsAlliance;
+const mapStateToProps = (state) => {
+  return {
+    selectedAlly: state.selectedAlly,
+  };
+};
+
+export default connect(mapStateToProps, null, ProductsAlliance);

@@ -5,6 +5,19 @@ import { TextField } from "@material-ui/core";
 import "../assets/styles/containers/NewAlliance.css";
 
 class ValuesAlliance extends Component {
+  state = {
+    porcentajeGanancia: 0,
+    porcentajeAliado: 0,
+    cantidadLimite: 0,
+    descuento: 0,
+  };
+
+  onchangeHandler = (e) => {
+    e.preventDefault();
+    this.setState({ [e.target.name]: e.target.value }, () => {
+      console.log(this.state);
+    });
+  };
   render() {
     return (
       <div>
@@ -15,7 +28,13 @@ class ValuesAlliance extends Component {
               <div>
                 <TextField
                   style={{ backgroundColor: "white", borderRadius: "10px" }}
-                  id="date"
+                  id="porcentajeGanancia"
+                  label="Porcentaje ganancia"
+                  name="porcentajeGanancia"
+                  type="number"
+                  onChange={this.onchangeHandler}
+                  InputProps={{ inputProps: { min: 0, max: 100 } }}
+                  value={this.state.startDate}
                 />
               </div>
             </div>
