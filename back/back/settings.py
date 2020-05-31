@@ -15,6 +15,9 @@ from envparse import env
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MEDIA_ROOT = os.path.join(BASE_DIR, 'api/media')
+
+MEDIA_URL = '/'
 
 
 # Quick-start development settings - unsuitable for production

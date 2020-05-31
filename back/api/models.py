@@ -18,7 +18,7 @@ class Company(models.Model):
     owner = models.CharField(max_length=100)
     suscription = models.BooleanField(default=False)
     sector = models.ForeignKey(Sector, on_delete=models.PROTECT)
-    picture = models.ImageField(upload_to='media', blank=True, null=True)
+    picture = models.ImageField(upload_to='pictures/', blank=True, null=True)
 
     def __str__(self):
         return "{id: " + str(self.id) + " || name: " + str(self.name) + " || suscription: " + str(
