@@ -2,27 +2,32 @@ from rest_framework import serializers
 
 from .models import Company, Sector, Category, Preference, Location, Alliance
 
-class CompanySerializer(serializers.HyperlinkedModelSerializer):
+
+class CompanySerializer(serializers.ModelSerializer):
     class Meta:
         model = Company
-        fields = ['id', 'name', 'nit', 'owner', 'suscription', 'sector']
+        fields = ('id', 'name', 'nit', 'owner', 'suscription', 'sector')
 
-class SectorSerializer(serializers.HyperlinkedModelSerializer):
+
+class SectorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sector
-        fields = ['id', 'name', 'description']
+        fields = ('id', 'name', 'description')
 
-class CategorySerializer(serializers.HyperlinkedModelSerializer):
+
+class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['id', 'name', 'description']
+        fields = ('id', 'name', 'description')
 
-class PreferenceSerializer(serializers.HyperlinkedModelSerializer):
+
+class PreferenceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Preference
-        fields= ['id', 'sector', 'category', 'company']
+        fields = ('id', 'sector', 'category', 'company')
 
-class LocationSerializer(serializers.HyperlinkedModelSerializer):
+
+class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
         fields = ['id', 'country', 'city', 'company']

@@ -40,8 +40,8 @@ class Product(models.Model):
 
 class Preference(models.Model):
     id = models.AutoField(primary_key=True)
-    sector = models.ForeignKey(Sector, on_delete=models.PROTECT, blank=True)
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True)
+    sector = models.ForeignKey(Sector, on_delete=models.PROTECT, blank=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True)
     company = models.ForeignKey(Company, on_delete=models.PROTECT)
 
     def __str__(self):
