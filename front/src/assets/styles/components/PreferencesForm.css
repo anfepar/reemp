@@ -1,0 +1,59 @@
+.PreferencesForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    margin-top: 30px;
+    margin-left: 119px;
+    margin-right: 119px;
+    margin-bottom: 5%;
+    
+  }
+  .PreferencesForm .title {
+    margin: 0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 60px;
+    line-height: 72px;
+    color: #88f4ff;
+  }
+  .description-text {
+    margin-top: 0;
+    margin-left: 80px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: #ffffff;
+  }
+  
+ .selector{
+    display: grid;
+    grid-template-columns: 49% 2% 49%;
+    height: 60vh;
+ }
+
+ .line {
+     border: 1px solid #88F4FF ;
+    height: 60vh;
+    width: 0;
+ }
+
+ .button-material {
+    margin-top: 19px;
+    background-color: #219be4;
+    color: white;
+    width: 327px;
+    height: 51px;
+    border-radius: 10px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 33px;
+    border: none;
+    outline: none;
+  }
+  .action{
+      display:flex;
+      justify-content: center;
+  }

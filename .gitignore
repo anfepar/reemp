@@ -363,3 +363,5 @@ nohup.out
 */.idea/*
 
 # back/db.sqlite3
+
+front/node_modules/
