@@ -38,6 +38,9 @@ const STRINGS = {
       ],
     },
   },
+  URLS: {
+    BASE: "http://ec2-18-218-69-56.us-east-2.compute.amazonaws.com:8080/",
+  },
 };
 
 module.exports = STRINGS;

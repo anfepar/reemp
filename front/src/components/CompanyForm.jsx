@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { TextField, Select, MenuItem } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { GET_METHOD, MOCKED_DATA } from "../constants/STRINGS";
+import { GET_METHOD, MOCKED_DATA, URLS } from "../constants/STRINGS";
 import { serviceMethod } from "../api/util";
 
 import { setDatosCompany, setLocation } from "../actions";
@@ -25,12 +25,7 @@ class CompanyForm extends Component {
         console.log(error);
       },
     };
-    serviceMethod(
-      GET_METHOD,
-      "http://ec2-18-218-69-56.us-east-2.compute.amazonaws.com:8080/sectors",
-      {},
-      callback
-    );
+    serviceMethod(GET_METHOD, `${URLS.BASE}sectors`, {}, callback);
   }
 
   onChangeHandler = (event, type) => {

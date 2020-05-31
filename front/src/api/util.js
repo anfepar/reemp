@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export const serviceMethod = (method, url, data = {}, callback) => {
-  console.log(method, url, data, callback);
-  axios({ method, url, data })
+  console.log("DATA", data);
+  axios({ method, url, data, config: { "Content-type": "application/json" } })
     .then((response) => {
       callback.onSuccess(response);
     })
