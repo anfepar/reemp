@@ -6,7 +6,7 @@ from .models import Company, Sector, Category, Preference, Location, Alliance, P
 class CompanySerializer(serializers.ModelSerializer):
     class Meta:
         model = Company
-        fields = ('id', 'name', 'nit', 'owner', 'suscription', 'sector')
+        fields = ('id', 'name', 'nit', 'owner', 'suscription', 'sector', 'picture')
 
 
 class SectorSerializer(serializers.ModelSerializer):
