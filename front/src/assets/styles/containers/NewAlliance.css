@@ -1,0 +1,33 @@
+.description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* height: 40vh; */
+  background-color: white;
+  padding-left: 100px;
+  padding-right: 100px;
+  color: #4c44b9;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-start {
+  justify-content: flex-start;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.center {
+  align-items: center;
+}

@@ -7,6 +7,8 @@ import Feed from "../containers/Feed";
 import Header from "../components/Header";
 import PreferencesForm from "../components/PreferencesForm";
 import AllyDetail from "../components/AllyDetail";
+import NewAlliance from "../components/NewAlliance";
+import ProductsAlliance from "../components/ProductsAlliance";
 
 const App = () => (
   <BrowserRouter>
@@ -17,6 +19,7 @@ const App = () => (
       <Route path="/preferences" component={PreferencesForm} />
       <Route path="/allies" component={Feed} />
       <Route path="/allies/:allyId" component={AllyDetail} />
+      <Route path="/alliance" component={NewAlliance} />
     </Switch>
   </BrowserRouter>
 );

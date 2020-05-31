@@ -6,23 +6,23 @@ import { createStore, compose } from "redux";
 import reducer from "./reducers";
 
 const initialState = {
-  company:{
-    name:"",
-    nit:"",
-    owner:"",
-    sector:"",
-    preferences:{},
+  company: {
+    name: "",
+    nit: "",
+    owner: "",
+    sector: "",
+    preferences: {},
   },
-  location:{
-    city:"",
-    country:""
+  location: {
+    city: "",
+    country: "",
   },
-  logged:false
-
+  logged: false,
+  title: "¡Crea una Alianza!",
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducer, initialState,composeEnhancers());
+const store = createStore(reducer, initialState, composeEnhancers());
 
 ReactDOM.render(
   <Provider store={store}>

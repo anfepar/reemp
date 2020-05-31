@@ -16,11 +16,19 @@ const reducer = (state, action) => {
         location: { ...state.location, ...action.payload },
       };
 
-      case "LOGIN_COMPANY":
-        return {
-          ...state,
-          logged: true
-        }
+    case "LOGIN_COMPANY":
+      return {
+        ...state,
+        logged: true,
+      };
+    case "SET_TITULO_ALIANZA":
+      return {
+        ...state,
+        ...action.payload,
+      };
+
+    case "GET_TITULO_ALIANZA":
+      return state.title;
   }
 };
 

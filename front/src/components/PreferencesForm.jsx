@@ -59,12 +59,16 @@ class PreferencesForm extends Component {
     let listaSolicitudes = [];
 
     this.state.selectedCategories.forEach((category) => {
-      console.log(category, this.props.company);
+      console.log(category, {
+        category: category.id,
+        company: id,
+        sector: null,
+      });
       listaSolicitudes = listaSolicitudes.concat([
         axios.post(`${URLS.BASE}preferences/`, {
           category: category.id,
           company: id,
-          sector: 1,
+          sector: null,
         }),
       ]);
     });
@@ -75,7 +79,7 @@ class PreferencesForm extends Component {
         axios.post(`${URLS.BASE}preferences/`, {
           sector: sector.id,
           company: id,
-          category: 1,
+          category: null,
         }),
       ]);
     });
@@ -149,7 +153,7 @@ class PreferencesForm extends Component {
   handleRegister = (e) => {
     this.props.loginCompany(true);
     this.props.history.push("/allies");
-  /*   e.preventDefault();
+    e.preventDefault();
     let callback = {
       onSuccess: (response) => {
         console.log("response", response);
@@ -170,12 +174,11 @@ class PreferencesForm extends Component {
         nit: company.nit,
         owner: company.owner,
         suscription: false,
-        sector:
-          company.sector.id ,
+        sector: company.sector.id,
       },
-      callback 
+      callback
     );
-    console.log("props company", this.props.company);*/
+    console.log("props company", this.props.company);
   };
   render() {
     return this.state.isLoading ? (

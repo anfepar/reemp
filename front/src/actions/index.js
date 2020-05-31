@@ -13,4 +13,7 @@ export const loginCompany = (payload) => ({
   payload,
 });
 
-
+export const setTituloAlianza = (payload) => ({
+  type: "SET_TITULO_ALIANZA",
+  payload,
+});
