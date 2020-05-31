@@ -17,4 +17,3 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
         model = Category
         fields = ['name', 'description']
 
-
