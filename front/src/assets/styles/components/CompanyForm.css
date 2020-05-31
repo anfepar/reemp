@@ -6,6 +6,7 @@
   margin-top: 30px;
   margin-left: 119px;
   margin-right: 119px;
+  margin-bottom: 5%;
 }
 .companyBody {
   display: flex;
@@ -19,7 +20,7 @@
   line-height: 72px;
   color: #88f4ff;
 }
-.CompanyForm .description {
+.description-text {
   margin-top: 0;
   margin-left: 80px;
   font-style: normal;
@@ -92,10 +93,12 @@ input {
 .button-material {
   background-color: #219be4;
   color: white;
+  width: "327px";
+  height: "51px";
+  border-radius: "10px";
 }
 
-.menuIstem{
-    font-size: 20px;
+
+.menuIstem {
+  font-size: 20px;
 }
-
-

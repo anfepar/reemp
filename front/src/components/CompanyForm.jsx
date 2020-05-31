@@ -33,8 +33,7 @@ class CompanyForm extends Component {
     );
   }
 
-  onChangeHandler = (event, type) => {
-    console.log(type, event.target.value);
+  onChangeHandler = (event, type) => {    
     if (event.target.name) {
       if (type === "location") {
         this.props.setLocation({ [event.target.name]: event.target.value });
@@ -51,7 +50,7 @@ class CompanyForm extends Component {
       <div className="CompanyForm">
         <div className="">
           <h1 className="title">1. Tu empresa</h1>
-          <p className="description">Registra los datos de tu emprendimiento</p>
+          <p className="description-text">Registra los datos de tu emprendimiento</p>
         </div>
         <div className="companyBody">
           <form className="form" noValidate autoComplete="off">
@@ -140,7 +139,8 @@ class CompanyForm extends Component {
         </div>
         <div className="button">
           <Link className="button-link" to="/preferencias">
-            <Button
+            <Button 
+              disableElevation
               style={{ width: "327px", height: "51px", backgroundColor: "#219be4",
               color: "white", borderRadius:"10px" }}
               className="button-material"
