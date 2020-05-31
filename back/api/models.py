@@ -23,7 +23,6 @@ class Location(models.Model):
     id = models.AutoField(primary_key=True)
     country = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
-    address = models.CharField(max_length=100)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
 
 class Category(models.Model):
