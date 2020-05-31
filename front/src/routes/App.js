@@ -13,10 +13,10 @@ const App = () => (
     <Header />
     <Switch>
       <Route exact path="/" component={Register} />
-      <Route path="/register" component={Register} />
-      <Route path="/preferences" component={PreferencesForm} />
-      <Route path="/allies" component={Feed} />
-      <Route path="/allies/:allyId" component={AllyDetail} />
+      <Route exact path="/register" component={Register} />
+      <Route exact path="/preferences" component={PreferencesForm} />
+      <Route exact path="/allies" component={Feed} />
+      <Route exact path="/allies/:id" component={AllyDetail} />
     </Switch>
   </BrowserRouter>
 );

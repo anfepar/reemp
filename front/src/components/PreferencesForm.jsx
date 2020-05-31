@@ -147,13 +147,13 @@ class PreferencesForm extends Component {
   };
 
   handleRegister = (e) => {
-    this.props.loginCompany(true);
-    this.props.history.push("/allies");
-  /*   e.preventDefault();
+    e.preventDefault();
     let callback = {
       onSuccess: (response) => {
         console.log("response", response);
         //TODO REDIRECCCIONAR A PAGINA DE INICIO
+        this.props.loginCompany(true);
+        this.props.history.push("/allies");
         this.handlePostRequests(response.data.id);
       },
       onFailed: (error) => {
@@ -170,12 +170,11 @@ class PreferencesForm extends Component {
         nit: company.nit,
         owner: company.owner,
         suscription: false,
-        sector:
-          company.sector.id ,
+        sector: company.sector.id,
       },
-      callback 
+      callback
     );
-    console.log("props company", this.props.company);*/
+    console.log("props company", this.props.company);
   };
   render() {
     return this.state.isLoading ? (

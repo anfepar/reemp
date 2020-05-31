@@ -13,4 +13,7 @@ export const loginCompany = (payload) => ({
   payload,
 });
 
-
+export const selectAlly = (payload) => ({
+  type: "SELECT_ALLY",
+  payload,
+})

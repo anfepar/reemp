@@ -21,6 +21,12 @@ const reducer = (state, action) => {
           ...state,
           logged: true
         }
+
+        case "SELECT_ALLY":
+          return {
+            ...state,
+            selectedAlly:action.payload
+          }
   }
 };
 

@@ -17,8 +17,8 @@ const initialState = {
     city:"",
     country:""
   },
-  logged:false
-
+  logged:false,
+  selectedAlly:null
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

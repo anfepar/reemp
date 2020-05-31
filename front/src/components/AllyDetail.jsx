@@ -1,18 +1,60 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { serviceMethod } from "../api/util";
+import { GET_METHOD, URLS } from "../constants/STRINGS";
+import { Card, CardMedia, CardContent} from "@material-ui/core"
 
-export default class AllyDetail extends Component {
-  state = { isLoading: true };
+class AllyDetail extends Component {
+  state = { isLoading: true, ally: this.props.ally, products: [] };
   componentDidMount() {
-    //TODO Fetch ally detail data from id
-    let id = this.props.match.params.allyId;
-    console.log("id ally", id);
-    let ally = {
-      name: "Nombre Emprendimiento",
-      city: "Bogotá D.C",
-      description: "Lorem itsum dolor sit amet, Sic Mundus Creatus Est",
-    };
+    console.log(this.props.match.params.id);
+    if (!this.state.ally) {
+      let callback = {
+        onSuccess: (response) => {
+          this.setState(
+            { ...this.state, isLoading: false, products: response.data },
+            () => {}
+          );
+        },
+        onFailed: (error) => {
+          console.log(error);
+        },
+      };
+      serviceMethod(
+        GET_METHOD,
+        `${URLS.BASE}products/${this.props.params.id}`,
+        {},
+        callback
+      );
+    }
   }
   render() {
-    return <h1>en Construccion</h1>;
+    return (
+      <>
+        {this.state.products.map((product, index) => (
+          <div>
+          <Card>
+            <CardMedia
+              image="/static/images/cards/live-from-space.jpg"
+              title={product.name}
+            />
+            <CardContent >
+              {product.name}
+              {product.description}
+            </CardContent>
+          </Card>
+          <button>Ofertar</button>
+          </div>
+        ))}
+      </>
+    );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    ally: state.selectedAlly,
+  };
+};
+
+export default connect(mapStateToProps, null)(AllyDetail);
