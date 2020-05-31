@@ -357,9 +357,9 @@ GlobHack/*
 
 nohup.out
 
-back/api/migrations/*.py
+# back/api/migrations/*.py
 
 /.idea/*
 */.idea/*
 
-back/db.sqlite3
+# back/db.sqlite3
