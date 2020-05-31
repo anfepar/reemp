@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Company, Sector, Category, Preference
+from .models import Company, Sector, Category, Preference, Location
 
 class CompanySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -21,3 +21,8 @@ class PreferenceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Preference
         fields= ['id', 'sector', 'category', 'company']
+
+class LocationSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Location
+        fields = ['id', 'country', 'city', 'company']
