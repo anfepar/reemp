@@ -4,6 +4,7 @@ import App from "./routes/App";
 import { Provider } from "react-redux";
 import { createStore, compose } from "redux";
 import reducer from "./reducers";
+import Logo from './assets/logo.png';
 
 const initialState = {
   company: {

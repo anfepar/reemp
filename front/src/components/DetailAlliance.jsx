@@ -6,6 +6,7 @@ class DetailAlliance extends Component {
   render() {
     return (
       <div>
+        <h1>5</h1>
         <div className="flex flex-column">
           <div className="flex flex-row">
             <h1>PRUEBA</h1>

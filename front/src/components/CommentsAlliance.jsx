@@ -1,27 +1,31 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import NavigateScreenIcon from "./NavigateScreenIcon";
+import { TextField } from "@material-ui/core";
+import "../assets/styles/containers/NewAlliance.css";
 
 class CommentsAlliance extends Component {
   render() {
     return (
-      <div>
-        <Link to="/alliance/values">
-          <NavigateScreenIcon direction="Before" />
-        </Link>
-        <div className="flex flex-column">
-          <div className="flex flex-row">
-            <h1>PRUEBA</h1>
-            <h1>PRUEBA</h1>
-          </div>
-          <div className="flex flex-row">
-            <h1>prueba2</h1>
-            <h1>prueba2</h1>
-          </div>
-        </div>
-        <Link to="/alliance/send">
-          <NavigateScreenIcon direction="Next" />
-        </Link>
+        <div className="flex space-between flex-col ">
+            <div className="input">
+              <h1>Descripción de alianza</h1>
+              <div>
+                <TextField
+                  style={{ backgroundColor: "white", borderRadius: "10px" }}
+                  id="date"
+                />
+              </div>
+            </div>
+            <div className="input">
+              <h1>Comentarios</h1>
+              <div>
+                <TextField
+                  style={{ backgroundColor: "white", borderRadius: "10px" }}
+                  id="date"
+                />          
+            </div>
+          </div> 
       </div>
     );
   }

@@ -37,3 +37,7 @@
 .profile{
     display: flex;
 }
+
+.logo{
+    height: auto;
+}

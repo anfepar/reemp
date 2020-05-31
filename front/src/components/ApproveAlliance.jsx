@@ -6,6 +6,7 @@ class ApproveAlliance extends Component {
   render() {
     return (
       <div>
+        <h1>5</h1>
         <Link to="/alliance/detail">
           <NavigateScreenIcon direction="Before" />
         </Link>
