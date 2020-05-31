@@ -61,10 +61,10 @@ class Alliance(models.Model):
         choices=[("A", "Aceptada"), ("R", "Rechazada"), ("N", "En negociación")],
         default="N"
     )
-    disccount = models.FloatField()
-    limitQuantity = models.IntegerField()
-    alliedPercentage =  models.FloatField()
-    ownerPercentage = models.FloatField()
+    disccount = models.FloatField(null=True)
+    limitQuantity = models.IntegerField(null=True)
+    alliedPercentage =  models.FloatField(null=True)
+    ownerPercentage = models.FloatField(null=True)
     owner = models.ForeignKey(Company, on_delete=models.PROTECT, related_name="propietarioAlianza")
     allied = models.ForeignKey(Company, on_delete=models.PROTECT, related_name="aliado")
     products = models.ManyToManyField(Product)

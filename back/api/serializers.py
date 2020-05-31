@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Company, Sector, Category, Preference, Location
+from .models import Company, Sector, Category, Preference, Location, Alliance
 
 class CompanySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -26,3 +26,9 @@ class LocationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Location
         fields = ['id', 'country', 'city', 'company']
+
+class AllianceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Alliance
+        fields = ['id', 'duration', 'startingDate', 'description', 'allianceType', 'status', 'disccount',
+                    'limitQuantity', 'alliedPercentage', 'ownerPercentage', 'owner', 'allied', 'products']

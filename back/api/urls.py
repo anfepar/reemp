@@ -11,5 +11,6 @@ router.register(r'locations', views.LocationViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('alliance/', views.alliance_view),
     #path('get_best_company_matches/<int:pk>', views.get_best_company_matches)
 ]
