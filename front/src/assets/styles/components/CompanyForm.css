@@ -7,6 +7,7 @@
   margin-left: 119px;
   margin-right: 119px;
   margin-bottom: 5%;
+  background: #4c44b9;
 }
 .companyBody {
   display: flex;
@@ -96,8 +97,12 @@ input {
   width: "327px";
   height: "51px";
   border-radius: "10px";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 33px;
+  border: none;
 }
-
 
 .menuIstem {
   font-size: 20px;

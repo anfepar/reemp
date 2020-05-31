@@ -1,4 +1,39 @@
 .header {
+  position: fixed;
+  display: flex;
+  justify-content: flex-end;
+}
+.action-button {
+  width: 131px;
+  height: 40px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  background: #88f4ff;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.first-button {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 33px;
+  margin-right: 2%;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+
+
+
+.tool-bar{
+    height: 1px;
+    width: auto;
+}
+
+
+.profile{
     display: flex;
-    justify-content: space-between;
 }

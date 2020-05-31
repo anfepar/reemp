@@ -8,4 +8,9 @@ export const setLocation = (payload) => ({
   payload,
 });
 
+export const loginCompany = (payload) => ({
+  type: "LOGIN_COMPANY",
+  payload,
+});
+
 

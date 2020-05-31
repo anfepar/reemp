@@ -6,15 +6,17 @@ import Register from "../containers/Register";
 import Feed from "../containers/Feed";
 import Header from "../components/Header";
 import PreferencesForm from "../components/PreferencesForm";
+import AllyDetail from "../components/AllyDetail";
 
 const App = () => (
   <BrowserRouter>
-    <Header/> 
+    <Header />
     <Switch>
-      <Route exact path="/" component={LandingPage} />
+      <Route exact path="/" component={Register} />
       <Route path="/register" component={Register} />
-      <Route path="/preferencias" component={PreferencesForm} />
-      <Route path="/feed" component={Feed} />
+      <Route path="/preferences" component={PreferencesForm} />
+      <Route path="/allies" component={Feed} />
+      <Route path="/allies/:allyId" component={AllyDetail} />
     </Switch>
   </BrowserRouter>
 );

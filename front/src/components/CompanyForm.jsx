@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { TextField, Select, MenuItem, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { GET_METHOD, MOCKED_DATA } from "../constants/STRINGS";
+import { GET_METHOD, MOCKED_DATA, URLS } from "../constants/STRINGS";
 import { serviceMethod } from "../api/util";
 import "../assets/styles/components/CompanyForm.css";
 
@@ -18,19 +18,13 @@ class CompanyForm extends Component {
   componentDidMount() {
     let callback = {
       onSuccess: (response) => {
-        this.setState({ isLoading: false, sectors: response.data }, () => {
-        });
+        this.setState({ isLoading: false, sectors: response.data }, () => {});
       },
       onFailed: (error) => {
         console.log(error);
       },
     };
-    serviceMethod(
-      GET_METHOD,
-      "http://ec2-18-218-69-56.us-east-2.compute.amazonaws.com:8080/sectors",
-      {},
-      callback
-    );
+    serviceMethod(GET_METHOD, `${URLS.BASE}sectors`, {}, callback);
   }
 
   onChangeHandler = (event, type) => {    
@@ -129,7 +123,7 @@ class CompanyForm extends Component {
                 onChange={(e) => this.onChangeHandler(e, "location")}
               >
                 {this.state.cities.map((city, index) => (
-                  <MenuItem  key={city.name} value={city}>
+                  <MenuItem key={city.name} value={city}>
                     <p className="menuItem">{city.name}</p>
                   </MenuItem>
                 ))}
@@ -138,16 +132,20 @@ class CompanyForm extends Component {
           </form>
         </div>
         <div className="button">
-          <Link className="button-link" to="/preferencias">
-            <Button 
-              disableElevation
-              style={{ width: "327px", height: "51px", backgroundColor: "#219be4",
-              color: "white", borderRadius:"10px" }}
+          <Link className="button-link" to="/preferences">
+            <button
+              style={{
+                width: "327px",
+                height: "51px",
+                backgroundColor: "#219be4",
+                color: "white",
+                borderRadius: "10px",
+              }}
               className="button-material"
               variant="contained"
             >
               Siguiente
-            </Button>
+            </button>
           </Link>
         </div>
       </div>

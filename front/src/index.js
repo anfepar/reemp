@@ -16,7 +16,8 @@ const initialState = {
   location:{
     city:"",
     country:""
-  }
+  },
+  logged:false
 
 };
 
