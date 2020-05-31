@@ -1,12 +1,15 @@
 from django.db import models
 
+
 class Sector(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
 
     def __str__(self):
-        return "{id: "+ str(self.id) + " || name: "+ str(self.name) + " || description: "+ str(self.description) +"}"
+        return "{id: " + str(self.id) + " || name: " + str(self.name) + " || description: " + str(
+            self.description) + "}"
+
 
 class Company(models.Model):
     id = models.AutoField(primary_key=True)
@@ -17,7 +20,9 @@ class Company(models.Model):
     sector = models.ForeignKey(Sector, on_delete=models.PROTECT)
 
     def __str__(self):
-        return "{id: "+ str(self.id)+" || name: " + str(self.name) + " || suscription: " + str(self.suscription) + " || sector: "+ str(self.sector)+"}"
+        return "{id: " + str(self.id) + " || name: " + str(self.name) + " || suscription: " + str(
+            self.suscription) + " || sector: " + str(self.sector) + "}"
+
 
 class Location(models.Model):
     id = models.AutoField(primary_key=True)
@@ -25,10 +30,12 @@ class Location(models.Model):
     city = models.CharField(max_length=100)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
 
+
 class Category(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=200)
+
 
 class Product(models.Model):
     id = models.AutoField(primary_key=True)
@@ -38,6 +45,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     company = models.ForeignKey(Company, on_delete=models.PROTECT)
 
+
 class Preference(models.Model):
     id = models.AutoField(primary_key=True)
     sector = models.ForeignKey(Sector, on_delete=models.PROTECT, blank=True, null=True)
@@ -46,6 +54,7 @@ class Preference(models.Model):
 
     def __str__(self):
         return "{" + f"id: {self.id} || sector: {self.sector} || category: {self.category} || company: {self.company}" + "}"
+
 
 class Alliance(models.Model):
     id = models.AutoField(primary_key=True)
@@ -63,11 +72,12 @@ class Alliance(models.Model):
     )
     disccount = models.FloatField(null=True)
     limitQuantity = models.IntegerField(null=True)
-    alliedPercentage =  models.FloatField(null=True)
+    alliedPercentage = models.FloatField(null=True)
     ownerPercentage = models.FloatField(null=True)
     owner = models.ForeignKey(Company, on_delete=models.PROTECT, related_name="propietarioAlianza")
     allied = models.ForeignKey(Company, on_delete=models.PROTECT, related_name="aliado")
     products = models.ManyToManyField(Product)
+
 
 class Comment(models.Model):
     id = models.AutoField(primary_key=True)

@@ -6,29 +6,36 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
 
-from .serializers import CompanySerializer, SectorSerializer, CategorySerializer, PreferenceSerializer, LocationSerializer, AllianceSerializer
+from .serializers import CompanySerializer, SectorSerializer, CategorySerializer, PreferenceSerializer, \
+    LocationSerializer, AllianceSerializer
 from .models import Company, Sector, Category, Preference, Location, Alliance
+from api.ai.aiModule import get_best_company_matches_from_preference, get_best_product_matches_by_preference
 
 
 class CompanyViewSet(viewsets.ModelViewSet):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
 
+
 class SectorViewSet(viewsets.ModelViewSet):
     queryset = Sector.objects.all()
     serializer_class = SectorSerializer
+
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
+
 class PreferenceViewSet(viewsets.ModelViewSet):
     queryset = Preference.objects.all()
     serializer_class = PreferenceSerializer
 
+
 class LocationViewSet(viewsets.ModelViewSet):
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
+
 
 @csrf_exempt
 def alliance_view(request):
@@ -45,16 +52,16 @@ def alliance_view(request):
         if serializer.is_valid():
             serializer.save()
             print(serializer.validated_data)
-            alliance =serializer.validated_data
-            message = "¡Hey! No te pierdas la oportunidad de encontrar tu aliado ideal. "+\
-                        str(serializer.validated_data['owner'].name) + " quiere establecer "+\
-                        "una nueva alianza contigo. Ingresa ya mismo a www.reemp.com y acepta "+\
-                        "esta increible oportunidad."
+            alliance = serializer.validated_data
+            message = "¡Hey! No te pierdas la oportunidad de encontrar tu aliado ideal. " + \
+                      str(serializer.validated_data['owner'].name) + " quiere establecer " + \
+                      "una nueva alianza contigo. Ingresa ya mismo a www.reemp.com y acepta " + \
+                      "esta increible oportunidad."
             send_mail("Nueva solicitud de alianza",
-                message,
-                "no-reply@reemp.com",
-                ["lmardila71@hotmail.com"],
-                fail_silently=False)
+                      message,
+                      "no-reply@reemp.com",
+                      ["lmardila71@hotmail.com"],
+                      fail_silently=False)
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
 
@@ -85,11 +92,22 @@ def alliance_detail(request, pk):
         alliance.delete()
         return HttpResponse(status=204)
 
-"""@api_view(["GET"])
+
+@api_view(["GET"])
 def get_best_company_matches(request, pk):
     try:
-        preference = Preference.objects.filter(company__id=pk)
+        preferences = Preference.objects.filter(company__id=pk)
     except Preference.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    pass"""
+    return get_best_company_matches_from_preference(preferences)
+
+
+@api_view(["GET"])
+def get_best_product_matches(request, pk):
+    try:
+        preferences = Preference.objects.filter(company__id=pk)
+    except Preference.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    return get_best_product_matches_by_preference(preferences)
