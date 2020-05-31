@@ -65,12 +65,12 @@ class Alliance(models.Model):
     limitQuantity = models.IntegerField()
     alliedPercentage =  models.FloatField()
     ownerPercentage = models.FloatField()
-    owner = models.ForeignKey(Company, on_delete=models.PROTECT, related_name="Dueño de alianza")
-    allied = models.ForeignKey(Company, on_delete=models.PROTECT, related_name="Aliado")
-    # faltan productos
+    owner = models.ForeignKey(Company, on_delete=models.PROTECT, related_name="propietarioAlianza")
+    allied = models.ForeignKey(Company, on_delete=models.PROTECT, related_name="aliado")
+    products = models.ManyToManyField(Product)
 
 class Comment(models.Model):
     id = models.AutoField(primary_key=True)
     text = models.TextField(max_length=500)
-    author = models.ForeignKey(Company, on_delete=models.PROTECT, related_name="Autor")
+    author = models.ForeignKey(Company, on_delete=models.PROTECT)
     alliance = models.ForeignKey(Alliance, on_delete=models.PROTECT)
