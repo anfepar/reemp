@@ -6,18 +6,11 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
 
-<<<<<<< HEAD
 from .serializers import CompanySerializer, SectorSerializer, CategorySerializer, \
                         PreferenceSerializer, LocationSerializer, AllianceSerializer, \
                         ProductSerializer
 from .models import Company, Sector, Category, Preference, Location, Alliance, Product
-=======
-from .serializers import CompanySerializer, SectorSerializer, CategorySerializer, PreferenceSerializer, \
-    LocationSerializer, AllianceSerializer
-from .models import Company, Sector, Category, Preference, Location, Alliance
 from api.ai.aiModule import get_best_company_matches_from_preference, get_best_product_matches_by_preference
->>>>>>> aa361a313a13db746089a8d9ff1dd99f572b2365
-
 
 class CompanyViewSet(viewsets.ModelViewSet):
     queryset = Company.objects.all()
@@ -43,6 +36,18 @@ class LocationViewSet(viewsets.ModelViewSet):
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
 
+
+@csrf_exempt
+def company_locations(request, company_pk):
+    try:
+        company = Company.objects.get(pk=company_pk)
+    except Company.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        locations = Location.objects.filter(company=company)
+        serializer = LocationSerializer(locations, many=True)
+        return JsonResponse(serializer.data, safe=False)
 
 @csrf_exempt
 def alliance_view(request):
