@@ -4,6 +4,7 @@ import {Link} from "react-router-dom"
 import { connect } from "react-redux";
 import { GET_METHOD } from "../constants/STRINGS";
 import { serviceMethod } from "../api/util";
+import '../assets/styles/components/CompanyForm.css'
 
 import { setDatosCompany, setLocation } from "../actions";
 class CompanyForm extends Component {
@@ -25,7 +26,7 @@ class CompanyForm extends Component {
     };
     serviceMethod(
       GET_METHOD,
-      "http://dummy.restapiexample.com/api/v1/employees",
+      "http://ec2-18-218-69-56.us-east-2.compute.amazonaws.com:8080/sectors",
       {},
       callback
     );
@@ -47,8 +48,8 @@ class CompanyForm extends Component {
 
   render() {
     return (
-      <div>
-          <h1>1. Tu empresa</h1>
+      <div className="CompanyForm">
+          <p className="title">1. Tu empresa</p>
           <p>Registra los datos de tu emprendimiento</p>
           <form noValidate autoComplete="off">
             <TextField name="name" id="name" onChange={(e)=> this.onChangeHandler(e)} label="Nombre empresa"  variant="outlined" />

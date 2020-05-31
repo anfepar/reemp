@@ -1,0 +1,12 @@
+.CompanyForm {
+  margin: 20px;
+}
+
+.CompanyForm .title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 72px;
+  line-height: 72px;
+
+  color: #88f4ff;
+}
