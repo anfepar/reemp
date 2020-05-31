@@ -1,7 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const tailwindcss = require('tailwindcss');
 
 module.exports = {
   entry: "./src/index.js",
@@ -38,6 +37,10 @@ module.exports = {
           "css-loader",
           "sass-loader",
         ],
+      },
+      {
+        test: /\.(ttf|woff|woff2|eot|svg|png|jpg|gif|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'file-loader'
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
