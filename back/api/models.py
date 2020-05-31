@@ -36,6 +36,9 @@ class Category(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=200)
 
+    def __str__(self):
+        return "{" + f"id: {self.id} || name: {self.name} || description: {self.description}" + "}"
+
 
 class Product(models.Model):
     id = models.AutoField(primary_key=True)
