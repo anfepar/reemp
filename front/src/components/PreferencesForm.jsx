@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { serviceMethod } from "../api/util";
-import { loginCompany, setIdCompany, setDatosCompany } from "../actions";
+import { loginCompany, setDatosCompany } from "../actions";
 
 import {
   GET_METHOD,
@@ -137,7 +137,6 @@ class PreferencesForm extends Component {
   };
 
   handlePostRequests = (idCompany) => {
-    this.props.setIdCompany({ idCompany });
     Promise.all([
       ...this.addPreferences(idCompany),
       this.addLocationData(idCompany),
@@ -163,7 +162,7 @@ class PreferencesForm extends Component {
           ...this.props.company,
           id: response.data.id,
         });
-        this.props.history.push("/allies");
+        // this.props.history.push("/allies");
         this.handlePostRequests(response.data.id);
       },
       onFailed: (error) => {
@@ -240,7 +239,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   loginCompany,
-  setIdCompany,
   setDatosCompany,
 };
 

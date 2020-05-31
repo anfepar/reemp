@@ -20,8 +20,3 @@ export const setTituloAlianza = (payload) => ({
   type: "SET_TITULO_ALIANZA",
   payload,
 });
-
-export const setIdCompany = (payload) => ({
-  type: "SET_ID_COMPANY",
-  payload,
-});

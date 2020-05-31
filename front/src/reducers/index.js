@@ -5,10 +5,6 @@ const reducer = (state, action) => {
         ...state,
         company: { ...state.company, ...action.payload },
       };
-    case "GET_DATOS_COMPANY":
-      return state.company;
-    default:
-      return state;
 
     case "SET_LOCATION":
       return {
@@ -33,6 +29,9 @@ const reducer = (state, action) => {
         ...state,
         idCompany: action.payload.idCompany,
       };
+
+    default:
+      return state;
   }
 };
 
