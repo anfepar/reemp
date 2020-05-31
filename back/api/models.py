@@ -21,7 +21,7 @@ class Company(models.Model):
 
 class Location(models.Model):
     id = models.AutoField(primary_key=True)
-    country = models.CharField(max_length=100)
+    country = models.CharField(max_length=100, default="Colombia")
     city = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
@@ -44,3 +44,7 @@ class Preference(models.Model):
     sector = models.ForeignKey(Sector, on_delete=models.PROTECT, blank=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True)
     company = models.ForeignKey(Company, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return "{" + f"id: {self.id} || sector: {self.sector} || category: {self.category} || company: {self.company}" + "}"
+
