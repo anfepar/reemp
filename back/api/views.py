@@ -6,8 +6,10 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
 
-from .serializers import CompanySerializer, SectorSerializer, CategorySerializer, PreferenceSerializer, LocationSerializer, AllianceSerializer
-from .models import Company, Sector, Category, Preference, Location, Alliance
+from .serializers import CompanySerializer, SectorSerializer, CategorySerializer, \
+                        PreferenceSerializer, LocationSerializer, AllianceSerializer, \
+                        ProductSerializer
+from .models import Company, Sector, Category, Preference, Location, Alliance, Product
 
 
 class CompanyViewSet(viewsets.ModelViewSet):
@@ -36,8 +38,8 @@ def alliance_view(request):
     Create a new alliance.
     """
     if request.method == 'GET':
-        snippets = Alliance.objects.all()
-        serializer = AllianceSerializer(snippets, many=True)
+        alliance = Alliance.objects.all()
+        serializer = AllianceSerializer(alliance, many=True)
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':
         data = JSONParser().parse(request)
@@ -53,10 +55,29 @@ def alliance_view(request):
             send_mail("Nueva solicitud de alianza",
                 message,
                 "no-reply@reemp.com",
-                ["lmardila71@hotmail.com"],
+                ["camilagomezr05@gmail.com"],
                 fail_silently=False)
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
+
+@csrf_exempt
+def product_preference_order_view(request, company_pk):
+    try:
+        company = Company.objects.get(pk=company_pk)
+    except Company.DoesNotExist:
+        return HttpResponse(status=404)
+    if request.method == 'GET':
+        result = []
+        category_preferences = Preference.objects.filter(company=company, sector=None).values('category')
+        products_prefences = Product.objects.filter(company=company).filter(category__in=category_preferences)
+        products_no_prefences = Product.objects.filter(company=company).exclude(category__in=category_preferences)
+        for product in products_prefences:
+            result.append(product)
+        for product in products_no_prefences:
+            result.append(product)
+        #pro = Product.objects.filter(company=company)
+        serializer = ProductSerializer(result, many=True)
+        return JsonResponse(serializer.data, safe=False)
 
 
 @csrf_exempt

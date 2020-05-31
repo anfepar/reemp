@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Company, Sector, Category, Preference, Location, Alliance
+from .models import Company, Sector, Category, Preference, Location, Alliance, Product
 
 
 class CompanySerializer(serializers.ModelSerializer):
@@ -37,3 +37,8 @@ class AllianceSerializer(serializers.ModelSerializer):
         model = Alliance
         fields = ['id', 'duration', 'startingDate', 'description', 'allianceType', 'status', 'disccount',
                     'limitQuantity', 'alliedPercentage', 'ownerPercentage', 'owner', 'allied', 'products']
+
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ['id', 'name', 'description', 'price', 'category', 'company']
