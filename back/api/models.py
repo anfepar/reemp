@@ -47,3 +47,30 @@ class Preference(models.Model):
     def __str__(self):
         return "{" + f"id: {self.id} || sector: {self.sector} || category: {self.category} || company: {self.company}" + "}"
 
+class Alliance(models.Model):
+    id = models.AutoField(primary_key=True)
+    duration = models.IntegerField()
+    startingDate = models.DateField(auto_now=True)
+    description = models.TextField(max_length=500)
+    allianceType = models.CharField(
+        max_length=2,
+        choices=[("AP", "Alianza de Producto"), ("AI", "Alianza de Insumo")],
+        default="AP")
+    status = models.CharField(
+        max_length=1,
+        choices=[("A", "Aceptada"), ("R", "Rechazada"), ("N", "En negociación")],
+        default="N"
+    )
+    disccount = models.FloatField()
+    limitQuantity = models.IntegerField()
+    alliedPercentage =  models.FloatField()
+    ownerPercentage = models.FloatField()
+    owner = models.ForeignKey(Company, on_delete=models.PROTECT, related_name="Dueño de alianza")
+    allied = models.ForeignKey(Company, on_delete=models.PROTECT, related_name="Aliado")
+    # faltan productos
+
+class Comment(models.Model):
+    id = models.AutoField(primary_key=True)
+    text = models.TextField(max_length=500)
+    author = models.ForeignKey(Company, on_delete=models.PROTECT, related_name="Autor")
+    alliance = models.ForeignKey(Alliance, on_delete=models.PROTECT)
