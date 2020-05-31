@@ -59,7 +59,7 @@ input {
   border: none;
   height: 51px;
   width: 345px;
-  border-radius: 0.375rem;
+  border-radius: 10px;
 }
 .input {
   display: flex;

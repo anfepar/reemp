@@ -141,7 +141,7 @@ class CompanyForm extends Component {
         <div className="button">
           <Link className="button-link" to="/preferencias">
             <Button
-              style={{ width: "327px", height: "74px", backgroundColor: "#219be4",
+              style={{ width: "327px", height: "51px", backgroundColor: "#219be4",
               color: "white", borderRadius:"10px" }}
               className="button-material"
               variant="contained"
