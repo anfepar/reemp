@@ -5,14 +5,18 @@ import LandingPage from "../containers/LandingPage";
 import Register from "../containers/Register";
 import Header from "../components/Header";
 import PreferencesForm from "../components/PreferencesForm";
+import FeedAllies from "../components/FeedAllies";
+import AllyDetail from "../components/AllyDetail";
 
 const App = () => (
   <BrowserRouter>
-    <Header/> 
+    <Header />
     <Switch>
       <Route exact path="/" component={LandingPage} />
       <Route path="/register" component={Register} />
-      <Route path="/preferencias" component={PreferencesForm} />
+      <Route path="/preferences" component={PreferencesForm} />
+      <Route path="/feed" component={FeedAllies} />
+      <Route path="/allies/:allyId" component={AllyDetail} />
     </Switch>
   </BrowserRouter>
 );

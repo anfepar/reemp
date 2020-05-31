@@ -18,8 +18,7 @@ class CompanyForm extends Component {
   componentDidMount() {
     let callback = {
       onSuccess: (response) => {
-        this.setState({ isLoading: false, sectors: response.data }, () => {
-        });
+        this.setState({ isLoading: false, sectors: response.data }, () => {});
       },
       onFailed: (error) => {
         console.log(error);
@@ -125,7 +124,7 @@ class CompanyForm extends Component {
                 onChange={(e) => this.onChangeHandler(e, "location")}
               >
                 {this.state.cities.map((city, index) => (
-                  <MenuItem  key={city.name} value={city}>
+                  <MenuItem key={city.name} value={city}>
                     <p className="menuItem">{city.name}</p>
                   </MenuItem>
                 ))}
@@ -134,10 +133,15 @@ class CompanyForm extends Component {
           </form>
         </div>
         <div className="button">
-          <Link className="button-link" to="/preferencias">
+          <Link className="button-link" to="/preferences">
             <Button
-              style={{ width: "327px", height: "51px", backgroundColor: "#219be4",
-              color: "white", borderRadius:"10px" }}
+              style={{
+                width: "327px",
+                height: "51px",
+                backgroundColor: "#219be4",
+                color: "white",
+                borderRadius: "10px",
+              }}
               className="button-material"
               variant="contained"
             >

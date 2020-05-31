@@ -49,7 +49,7 @@ class PreferencesForm extends Component {
     return axios.post(`${URLS.BASE}locations/`, {
       country: this.props.location.country.name,
       city: this.props.location.city.name,
-      company: `${URLS.BASE}companies/${id}/`,
+      company: id,
     });
   };
 
@@ -60,9 +60,9 @@ class PreferencesForm extends Component {
       console.log(category, this.props.company);
       listaSolicitudes = listaSolicitudes.concat([
         axios.post(`${URLS.BASE}preferences/`, {
-          category: `${URLS.BASE}categories/${category.id}/`,
-          company: `${URLS.BASE}companies/${id}/`,
-          sector: `${URLS.BASE}sectors/1/`,
+          category: category.id,
+          company: id,
+          sector: 1,
         }),
       ]);
     });
@@ -71,9 +71,9 @@ class PreferencesForm extends Component {
       console.log(sector, this.props.company);
       listaSolicitudes = listaSolicitudes.concat([
         axios.post(`${URLS.BASE}preferences/`, {
-          sector: `${URLS.BASE}sectors/${sector.id}/`,
-          company: `${URLS.BASE}companies/${id}/`,
-          category: `${URLS.BASE}categories/1/`,
+          sector: sector.id,
+          company: id,
+          category: 1,
         }),
       ]);
     });
@@ -137,6 +137,7 @@ class PreferencesForm extends Component {
     ])
       .then((results) => {
         console.log(results);
+        this.props.history.push("/feed");
       })
       .catch((error) => {
         console.log(error);
@@ -165,7 +166,8 @@ class PreferencesForm extends Component {
         nit: company.nit,
         owner: company.owner,
         suscription: false,
-        sector: `${URLS.BASE}sectors/${company.sector.id}/`,
+        sector:
+          company.sector.id /*`${URLS.BASE}sectors/${company.sector.id}/`*/,
       },
       callback
     );
