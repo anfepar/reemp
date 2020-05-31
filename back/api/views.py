@@ -131,7 +131,7 @@ def get_best_company_matches(request, pk):
     except Preference.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    return get_best_company_matches_from_preference(preferences)
+    return HttpResponse(get_best_company_matches_from_preference(preferences))
 
 
 @api_view(["GET"])
@@ -141,4 +141,4 @@ def get_best_product_matches(request, pk):
     except Preference.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    return get_best_product_matches_by_preference(preferences)
+    return HttpResponse(get_best_product_matches_by_preference(preferences))
