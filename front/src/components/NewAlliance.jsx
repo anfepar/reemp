@@ -3,12 +3,12 @@ import React, { Component } from "react";
 import "../assets/styles/containers/NewAlliance.css";
 import { connect } from "react-redux";
 import { Route, Switch, Redirect } from "react-router";
-import ProductsAlliance from "./ProductsAlliance";
-import ValuesAlliance from "./ValuesAlliance";
-import CommentsAlliance from "./CommentsAlliance";
-import SendAlliance from "./SendAlliance";
-import DetailAlliance from "./DetailAlliance";
-import ApproveAlliance from "./ApproveAlliance";
+import { ProductsAlliance } from "./ProductsAlliance";
+import { ValuesAlliance } from "./ValuesAlliance";
+import { CommentsAlliance } from "./CommentsAlliance";
+import { SendAlliance } from "./SendAlliance";
+import { DetailAlliance } from "./DetailAlliance";
+import { ApproveAlliance } from "./ApproveAlliance";
 import { serviceMethod } from "../api/util";
 import {
   GET_METHOD,
@@ -30,10 +30,15 @@ class NewAlliance extends Component {
         console.log("response,", response);
         console.log("response.data[0]", response.data[0]);
 
-        this.setState({
-          isLoading: false,
-          alliance: { city: response.data[0].city },
-        });
+        this.setState(
+          {
+            isLoading: false,
+            alliance: { city: response.data[0].city },
+          },
+          () => {
+            console.log(this.state);
+          }
+        );
         //TODO REDIRECCCIONAR A PAGINA DE INICIO
         // this.props.loginCompany(true);
         // this.props.history.push("/allies");
@@ -60,10 +65,7 @@ class NewAlliance extends Component {
   }
   render() {
     return this.state.isLoading ? (
-      <>
-        <h1>Loading...</h1>
-        {/* <Link to="/alliance/values">VALUES</Link> */}
-      </>
+      <h1>Loading...</h1>
     ) : (
       <div className="feed">
         <div className="description">

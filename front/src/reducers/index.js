@@ -26,6 +26,13 @@ const reducer = (state, action) => {
         ...state,
         selectedAlly: action.payload,
       };
+
+    case "SET_ID_COMPANY":
+      console.log("action", action);
+      return {
+        ...state,
+        idCompany: action.payload.idCompany,
+      };
   }
 };
 
