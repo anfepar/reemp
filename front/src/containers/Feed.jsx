@@ -44,8 +44,8 @@ class Feed extends Component {
         console.log(error);
       },
     };
-    console.log("GENERAL PROPS", this.props);
-    console.log("COMPANY PROPS", this.props.company.id);
+    // console.log("GENERAL PROPS", this.props);
+    // console.log("COMPANY PROPS", this.props.company.id);
     serviceMethod(
       GET_METHOD,
       `${URLS.BASE}get_best_company_matches/${this.props.company.id}`,
@@ -60,7 +60,9 @@ class Feed extends Component {
   }
 
   render() {
-    return (
+    return this.state.isLoading ? (
+      <h1>Loading...</h1>
+    ) : (
       <div className="feed">
         <div className="description">
           <p className="title">¡Encuentra tu aliado ideal!</p>
@@ -85,10 +87,10 @@ class Feed extends Component {
               </id>
 
               <CardContent>
-                <p className="allied">{allied.name}</p>
+                <p className="allied">{allied.fields.name}</p>
                 <div className="city-location">
                   <Place style={{ color: "#7C7C7C" }} />
-                  <p className="city">{allied.location.city.name}</p>
+                  <p className="city">Bogotá D.C</p>
                 </div>
               </CardContent>
               <CardActions className="detail">

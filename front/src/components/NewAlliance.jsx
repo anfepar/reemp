@@ -23,6 +23,7 @@ class NewAlliance extends Component {
   state = {
     step: 0,
     alliance: {},
+    isLoading: true,
   };
 
   selectLabel() {
@@ -59,7 +60,7 @@ class NewAlliance extends Component {
     }
     this.setState({ step });
   }
-   
+
   componentDidMount() {
     console.log("selected ally", this.props);
     let callback = {
@@ -95,7 +96,7 @@ class NewAlliance extends Component {
     // console.log(company);
     serviceMethod(
       GET_METHOD,
-      `${URLS.BASE}company/locations/${this.props.selectedAlly.id}`,
+      `${URLS.BASE}company/locations/${this.props.selectedAlly.pk}`,
       {},
       callback
     );
@@ -111,7 +112,7 @@ class NewAlliance extends Component {
             <img src="" alt="Logo empresa" />
             <div className="my-1 bl-1 mx-2"></div>
             <div className=" flex flex-column">
-              <h3 className="m-0">Nombre emprendimiento</h3>
+              <h3 className="m-0">{this.props.selectedAlly.fields.name}</h3>
               <div className="flex align-baseline ">
                 <Place style={{ color: "#7C7C7C", alignSelf: "center" }} />
                 <p className="ubication m-0">Bogotá D.C</p>
@@ -121,7 +122,9 @@ class NewAlliance extends Component {
         </div>
         <div className="alianza-form">
           <button onClick={(e) => this.handleChangeStep("prev")}>{"<"}</button>
-          <div className="flex justify-center">{this.selectLabel(this.state.label)}</div>
+          <div className="flex justify-center">
+            {this.selectLabel(this.state.label)}
+          </div>
           <button onClick={(e) => this.handleChangeStep("next")}>{">"}</button>
         </div>
 
