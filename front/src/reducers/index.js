@@ -15,7 +15,6 @@ const reducer = (state, action) => {
         ...state,
         location: { ...state.location, ...action.payload },
       };
-
       case "LOGIN_COMPANY":
         return {
           ...state,

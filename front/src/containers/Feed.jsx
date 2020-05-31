@@ -14,6 +14,7 @@ import { serviceMethod } from "../api/util";
 import { GET_METHOD, URLS } from "../constants/STRINGS";
 import "../assets/styles/containers/Feed.css";
 import { selectAlly } from "../actions/index";
+import { setTituloAlianza } from "../actions";
 
 class Feed extends Component {
   state = {
@@ -29,6 +30,10 @@ class Feed extends Component {
       { id: 9, name: "Aliado4", location: { city: { name: "Bogota" } } },
     ],
   };
+  // handleOnClick = (e) => {
+  //   e.preventDefault();
+  //   this.props.setTituloAlianza({ titulo: "!Crea una alianza!" });
+  // };
   componentDidMount() {
     let callback = {
       onSuccess: (response) => {

@@ -59,12 +59,16 @@ class PreferencesForm extends Component {
     let listaSolicitudes = [];
 
     this.state.selectedCategories.forEach((category) => {
-      console.log(category, this.props.company);
+      console.log(category, {
+        category: category.id,
+        company: id,
+        sector: null,
+      });
       listaSolicitudes = listaSolicitudes.concat([
         axios.post(`${URLS.BASE}preferences/`, {
           category: category.id,
           company: id,
-          sector: 1,
+          sector: null,
         }),
       ]);
     });
@@ -75,7 +79,7 @@ class PreferencesForm extends Component {
         axios.post(`${URLS.BASE}preferences/`, {
           sector: sector.id,
           company: id,
-          category: 1,
+          category: null,
         }),
       ]);
     });
