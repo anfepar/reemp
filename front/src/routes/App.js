@@ -1,6 +1,5 @@
 import React from "react";
 import "../assets/styles/App.css";
-import '../assets/fonts/Larsseit.ttf'
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LandingPage from "../containers/LandingPage";
 import Register from "../containers/Register";
@@ -9,7 +8,7 @@ import PreferencesForm from "../components/PreferencesForm";
 
 const App = () => (
   <BrowserRouter>
-   {/*  <Header/> */}
+    <Header/> 
     <Switch>
       <Route exact path="/" component={LandingPage} />
       <Route path="/register" component={Register} />
