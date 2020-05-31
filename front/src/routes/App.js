@@ -3,11 +3,12 @@ import "../assets/styles/App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LandingPage from "../containers/LandingPage";
 import Register from "../containers/Register";
-import CompanyForm from "../components/CompanyForm";
+import Header from "../components/Header";
 import PreferencesForm from "../components/PreferencesForm";
 
 const App = () => (
   <BrowserRouter>
+    <Header/> 
     <Switch>
       <Route exact path="/" component={LandingPage} />
       <Route path="/register" component={Register} />
