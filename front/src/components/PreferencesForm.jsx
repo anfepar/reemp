@@ -143,7 +143,7 @@ class PreferencesForm extends Component {
     ])
       .then((results) => {
         console.log(results);
-        this.props.history.push("/feed");
+        this.props.history.push("/allies");
       })
       .catch((error) => {
         console.log(error);

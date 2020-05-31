@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import NavigateScreenIcon from "./NavigateScreenIcon";
 import { TextField } from "@material-ui/core";
+import { connect } from "react-redux";
 
 class ProductsAlliance extends Component {
   state = {
@@ -75,4 +76,10 @@ class ProductsAlliance extends Component {
   }
 }
 
-export default ProductsAlliance;
+const mapStateToProps = (state) => {
+  return {
+    selectedAlly: state.selectedAlly,
+  };
+};
+
+export default connect(mapStateToProps, null, ProductsAlliance);

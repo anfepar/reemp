@@ -15,17 +15,17 @@ const reducer = (state, action) => {
         ...state,
         location: { ...state.location, ...action.payload },
       };
-      case "LOGIN_COMPANY":
-        return {
-          ...state,
-          logged: true
-        }
+    case "LOGIN_COMPANY":
+      return {
+        ...state,
+        logged: true,
+      };
 
-        case "SELECT_ALLY":
-          return {
-            ...state,
-            selectedAlly:action.payload
-          }
+    case "SELECT_ALLY":
+      return {
+        ...state,
+        selectedAlly: action.payload,
+      };
   }
 };
 

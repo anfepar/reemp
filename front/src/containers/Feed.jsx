@@ -47,6 +47,7 @@ class Feed extends Component {
   }
 
   handleGetDetails(allied) {
+    console.log("allied", allied);
     this.props.selectAlly(allied);
   }
 
@@ -83,7 +84,7 @@ class Feed extends Component {
                 </div>
               </CardContent>
               <CardActions className="detail">
-                <Link className="link" to={`/allies/${allied.id}`}>
+                <Link className="link" to={`/alliance/products`}>
                   <button
                     name={allied.id}
                     className="detail-button"
