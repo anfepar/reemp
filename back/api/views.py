@@ -38,6 +38,18 @@ class LocationViewSet(viewsets.ModelViewSet):
 
 
 @csrf_exempt
+def company_locations(request, company_pk):
+    try:
+        company = Company.objects.get(pk=company_pk)
+    except Company.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        locations = Location.objects.filter(company=company)
+        serializer = LocationSerializer(locations, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+@csrf_exempt
 def alliance_view(request):
     """
     Create a new alliance.
