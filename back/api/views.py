@@ -5,6 +5,7 @@ from rest_framework.parsers import JSONParser
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
+from django.core import serializers
 
 from .serializers import CompanySerializer, SectorSerializer, CategorySerializer, \
                         PreferenceSerializer, LocationSerializer, AllianceSerializer, \
@@ -131,7 +132,8 @@ def get_best_company_matches(request, pk):
     except Preference.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    return JsonResponse(get_best_company_matches_from_preference(preferences))
+    leads_as_json = serializers.serialize('json', get_best_company_matches_from_preference(preferences))
+    return HttpResponse(leads_as_json, content_type='json')
 
 
 @api_view(["GET"])
@@ -141,4 +143,5 @@ def get_best_product_matches(request, pk):
     except Preference.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    return JsonResponse(get_best_product_matches_by_preference(preferences))
+    leads_as_json = serializers.serialize('json', get_best_product_matches_by_preference(preferences))
+    return HttpResponse(leads_as_json, content_type='json')

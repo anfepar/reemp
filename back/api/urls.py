@@ -15,5 +15,6 @@ urlpatterns = [
     path('alliance/<int:pk>', views.alliance_detail),
     path('products/<int:company_pk>', views.product_preference_order_view),
     path('company/locations/<int:company_pk>', views.company_locations),
-    path('get_best_company_matches/<int:pk>', views.get_best_company_matches)
+    path('get_best_company_matches/<int:pk>', views.get_best_company_matches),
+    path('get_best_products_matches/<int:pk>', views.get_best_product_matches)
 ]
