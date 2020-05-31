@@ -8,11 +8,12 @@ import {
   Button,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import Place from "@material-ui/icons/Place";
 import { serviceMethod } from "../api/util";
 import { GET_METHOD, URLS } from "../constants/STRINGS";
 import "../assets/styles/containers/Feed.css";
-import { connect } from "react-redux";
+import { selectAlly } from "../actions/index";
 import { setTituloAlianza } from "../actions";
 
 class Feed extends Component {
@@ -44,6 +45,11 @@ class Feed extends Component {
     };
     serviceMethod(GET_METHOD, `${URLS.BASE}allies`, {}, callback);
   }
+
+  handleGetDetails(allied) {
+    this.props.selectAlly(allied);
+  }
+
   render() {
     return (
       <div className="feed">
@@ -77,11 +83,14 @@ class Feed extends Component {
                 </div>
               </CardContent>
               <CardActions className="detail">
-                <Link
-                  className="link"
-                  to={"/alliance" /*`/allies/${allied.id}`*/}
-                >
-                  <button className="detail-button">Conoce más</button>
+                <Link className="link" to={`/allies/${allied.id}`}>
+                  <button
+                    name={allied.id}
+                    className="detail-button"
+                    onClick={(e) => this.handleGetDetails(allied)}
+                  >
+                    Conoce más
+                  </button>
                 </Link>
               </CardActions>
             </Card>
@@ -91,5 +100,8 @@ class Feed extends Component {
     );
   }
 }
+const mapDispatchToProps = {
+  selectAlly,
+};
 
-export default Feed;
+export default connect(null, mapDispatchToProps)(Feed);

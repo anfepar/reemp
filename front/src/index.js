@@ -17,7 +17,8 @@ const initialState = {
     city: "",
     country: "",
   },
-  logged: false,
+  logged:false,
+  selectedAlly:null,
   title: "¡Crea una Alianza!",
 };
 
